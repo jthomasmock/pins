@@ -192,7 +192,20 @@ configured with the <code>pins.board</code> option.</p>
 
 <span class='co'># retrieve default board</span>
 <span class='fu'>board_default</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "temp"</div><div class='input'>
+</div><div class='output co'>#&gt; $board
+#&gt; [1] "local"
+#&gt; 
+#&gt; $name
+#&gt; [1] "temp"
+#&gt; 
+#&gt; $cache
+#&gt; [1] "/tmp/RtmpJUltfw/file3b9f47105fb1"
+#&gt; 
+#&gt; $versions
+#&gt; [1] FALSE
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "local"      "pins_board"</div><div class='input'>
 <span class='co'># revert default board</span>
 <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>pins.board <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 </div></pre>

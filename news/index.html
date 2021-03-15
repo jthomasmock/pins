@@ -173,6 +173,7 @@
 <a href="#pins-development-version" class="anchor"></a>pins (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code><a href="https://rdrr.io/r/base/options.html">option(pins.invisible)</a></code> is now defunct and ignored.</p></li>
 <li><p>Pins no longer register the code needed to recreate them as this tends to either be dangerous (it’s easy to accidentally leak credentails) or useless (it relies on variables that the connection pane doesn’t capture).</p></li>
 <li><p>The board extension interface has changed. More info to follow.</p></li>
 <li><p>All boards now have a <code>board_</code> function that allows you create a board without registering it.</p></li>
