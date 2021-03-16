@@ -49,8 +49,11 @@
   
 
 <meta property="og:title" content="Register GitHub Board — board_register_github" />
-<meta property="og:description" content="Wrapper with explicit parameters over board_register() to
-register a GitHub repo as a board." />
+<meta property="og:description" content="To use a GitHub board, you'll need to set up authentication. This is likely
+to just work if you already use GitHub for other purposes since pins will
+inspect your  GITHUB_PAT environment variable. Otherwise, you can follow
+the instructions at https://happygitwithr.com/credential-caching.html to
+get set up." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -106,9 +109,6 @@ register a GitHub repo as a board." />
       <a href="../articles/pins-rstudio.html">Using Pins in RStudio</a>
     </li>
     <li>
-      <a href="../articles/boards-understanding.html">Understanding Boards</a>
-    </li>
-    <li>
       <a href="../articles/advanced-versions.html">Versioning</a>
     </li>
     <li>
@@ -135,10 +135,6 @@ register a GitHub repo as a board." />
     </li>
     <li>
       <a href="../articles/boards-extending.html">Extending Boards</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -172,8 +168,11 @@ register a GitHub repo as a board." />
     </div>
 
     <div class="ref-description">
-    <p>Wrapper with explicit parameters over <code><a href='board_register.html'>board_register()</a></code> to
-register a GitHub repo as a board.</p>
+    <p>To use a GitHub board, you'll need to set up authentication. This is likely
+to just work if you already use GitHub for other purposes since pins will
+inspect your  <code>GITHUB_PAT</code> environment variable. Otherwise, you can follow
+the instructions at <a href='https://happygitwithr.com/credential-caching.html'>https://happygitwithr.com/credential-caching.html</a> to
+get set up.</p>
     </div>
 
     <pre class="usage"><span class='fu'>board_register_github</span><span class='op'>(</span>
@@ -223,7 +222,8 @@ register a GitHub repo as a board.</p>
     </tr>
     <tr>
       <th>host</th>
-      <td><p>The URL hosting the GitHub API, defaults to <code>"https://api.github.com"</code>.</p></td>
+      <td><p>The URL of the GitHub API. You'll need to customise
+this to use GitHub enterprise, e.g. <code>"https://yourhostname/api/v3"</code>.</p></td>
     </tr>
     <tr>
       <th>cache</th>
@@ -235,19 +235,24 @@ register a GitHub repo as a board.</p>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="large-files"><a class="anchor" href="#large-files"></a>Large Files</h2>
 
-    <p>This function requires a GitHub repo to be manually created; otherwise,
-registering a GitHub board will fail.</p>
-<p>When a file upload exceeds 25MB, a GitHub release file will be used since
-they support up to 2GB file uploads. This threshold can be configured through
-the <code>pins.github.release</code> option which is specified in megabytes and
-defaults to <code>25</code>.</p>
-<p>When using GitHub Enterprise, consider customizing the <code>host</code> parameter to
-<code>"https://yourhostname/api/v3"</code>.</p>
+    <p>A GitHub repo only supports files under 25MB in size (100MB in theory but
+there is additional overhead when using the GitHub API). To store large
+files, GitHub
+<a href='https://help.github.com/en/articles/distributing-large-binaries'>recommends</a>
+storing them using GitHub Releases which support up to 2GB files, which
+is what pins uses. You don't need to do anything extra as this will happen
+behind the scenes, but don't be surprised if pins creates releases in your
+repo.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>board_register</p></div>
+    <div class='dont-index'><p>board_register</p>
+<p>Other boards: 
+<code><a href='board_register_azure.html'>board_register_azure</a>()</code>,
+<code><a href='board_register_local.html'>board_register_local</a>()</code>,
+<code><a href='board_register_rsconnect.html'>board_register_rsconnect</a>()</code>,
+<code><a href='board_register_s3.html'>board_register_s3</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

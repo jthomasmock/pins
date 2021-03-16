@@ -4,16 +4,7 @@ pkgdown_sha: ~
 articles:
   advanced-too-big: advanced-too-big.html
   advanced-versions: advanced-versions.html
-  boards-azure: boards-azure.html
-  boards-dospace: boards-dospace.html
   boards-extending: boards-extending.html
-  boards-gcloud: boards-gcloud.html
-  boards-github: boards-github.html
-  boards-kaggle: boards-kaggle.html
-  boards-rsconnect: boards-rsconnect.html
-  boards-s3: boards-s3.html
-  boards-understanding: boards-understanding.html
-  boards-websites: boards-websites.html
   pins-extending: pins-extending.html
   pins-rstudio: pins-rstudio.html
   pins: pins.html
@@ -21,7 +12,7 @@ articles:
   use-cases/create-data-pipelines: create-data-pipelines.html
   use-cases/reuse-tidy-datasets: reuse-tidy-datasets.html
   use-cases/update-plumber-and-shiny-apps: update-plumber-and-shiny-apps.html
-last_built: 2021-03-15T14:02Z
+last_built: 2021-03-16T11:55Z
 urls:
   reference: https://pins.rstudio.com/reference
   article: https://pins.rstudio.com/articles

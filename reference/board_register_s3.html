@@ -49,8 +49,10 @@
   
 
 <meta property="og:title" content="Register S3 Board — board_register_s3" />
-<meta property="og:description" content="Wrapper with explicit parameters over board_register() to
-register an Amazon S3 bucket as a board." />
+<meta property="og:description" content="To use an Amazon S3 Storage board, you need an Amazon S3 bucket and a user
+with enough permissions to access the S3 bucket. You can sign-up and create
+those at https://aws.amazon.com/. Note that it can take a few minutes
+after you've created it before a bucket is usable." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -106,9 +108,6 @@ register an Amazon S3 bucket as a board." />
       <a href="../articles/pins-rstudio.html">Using Pins in RStudio</a>
     </li>
     <li>
-      <a href="../articles/boards-understanding.html">Understanding Boards</a>
-    </li>
-    <li>
       <a href="../articles/advanced-versions.html">Versioning</a>
     </li>
     <li>
@@ -135,10 +134,6 @@ register an Amazon S3 bucket as a board." />
     </li>
     <li>
       <a href="../articles/boards-extending.html">Extending Boards</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -172,8 +167,10 @@ register an Amazon S3 bucket as a board." />
     </div>
 
     <div class="ref-description">
-    <p>Wrapper with explicit parameters over <code><a href='board_register.html'>board_register()</a></code> to
-register an Amazon S3 bucket as a board.</p>
+    <p>To use an Amazon S3 Storage board, you need an Amazon S3 bucket and a user
+with enough permissions to access the S3 bucket. You can sign-up and create
+those at <a href='https://aws.amazon.com/'>https://aws.amazon.com/</a>. Note that it can take a few minutes
+after you've created it before a bucket is usable.</p>
     </div>
 
     <pre class="usage"><span class='fu'>board_register_s3</span><span class='op'>(</span>
@@ -208,18 +205,16 @@ multiple boards.</p></td>
     </tr>
     <tr>
       <th>bucket</th>
-      <td><p>The name of the Amazon S3 bucket. Defaults to the <code>AWS_BUCKET</code> environment
-variable.</p></td>
+      <td><p>The name of the Amazon S3 bucket.</p></td>
     </tr>
     <tr>
-      <th>key</th>
-      <td><p>The key of the Amazon S3 bucket. Defaults to the <code>AWS_ACCESS_KEY_ID</code> environment
-variable.</p></td>
-    </tr>
-    <tr>
-      <th>secret</th>
-      <td><p>The secret of the Amazon S3 bucket. Defaults to the <code>AWS_SECRET_ACCESS_KEY</code> environment
-variable.</p></td>
+      <th>key, secret</th>
+      <td><p>The key and secret for your space. You can create
+a key and secret in the "Spaces access keys" in your API settings.</p>
+<p>The <code>secret</code> is equivalent to a password, so generally should not be stored
+in your script. The easiest alternative is to store it in the
+<code>AWS_SECRET_ACCESS_KEY</code> environment variable, which <code>board_s3()</code> will
+use by default.</p></td>
     </tr>
     <tr>
       <th>cache</th>
@@ -231,7 +226,8 @@ variable.</p></td>
     </tr>
     <tr>
       <th>region</th>
-      <td><p>The region to use, required in some AWS regions and to enable V4 signatures.</p></td>
+      <td><p>The region to use, required in some AWS regions and to
+enable V4 signatures.</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -243,15 +239,14 @@ variable.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This function requires an Amazon S3 bucket to be manually created; otherwise,
-registering an S3 board will fail.</p>
-<p>When the <code>region</code> parameter is not specified, <code>pins</code> defaults to using AWS V2 signatures;
-therefore, it is recommended to specify the region to ensure <code>pins</code> makes use of AWS V4 signatures.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>board_register</p></div>
+    <div class='dont-index'><p>board_register</p>
+<p>Other boards: 
+<code><a href='board_register_azure.html'>board_register_azure</a>()</code>,
+<code><a href='board_register_github.html'>board_register_github</a>()</code>,
+<code><a href='board_register_local.html'>board_register_local</a>()</code>,
+<code><a href='board_register_rsconnect.html'>board_register_rsconnect</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

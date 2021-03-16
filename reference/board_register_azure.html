@@ -49,8 +49,9 @@
   
 
 <meta property="og:title" content="Register Azure Board — board_register_azure" />
-<meta property="og:description" content="Wrapper with explicit parameters over board_register() to
-register a Microsoft Azure Storage Blob as a board." />
+<meta property="og:description" content="To use Microsoft Azure Storage as a board, you'll need an Azure Storage
+account, an Azure Storage container, and an Azure Storage key.
+You can sign-up and create those at portal.azure.com." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -106,9 +107,6 @@ register a Microsoft Azure Storage Blob as a board." />
       <a href="../articles/pins-rstudio.html">Using Pins in RStudio</a>
     </li>
     <li>
-      <a href="../articles/boards-understanding.html">Understanding Boards</a>
-    </li>
-    <li>
       <a href="../articles/advanced-versions.html">Versioning</a>
     </li>
     <li>
@@ -135,10 +133,6 @@ register a Microsoft Azure Storage Blob as a board." />
     </li>
     <li>
       <a href="../articles/boards-extending.html">Extending Boards</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -172,8 +166,9 @@ register a Microsoft Azure Storage Blob as a board." />
     </div>
 
     <div class="ref-description">
-    <p>Wrapper with explicit parameters over <code><a href='board_register.html'>board_register()</a></code> to
-register a Microsoft Azure Storage Blob as a board.</p>
+    <p>To use Microsoft Azure Storage as a board, you'll need an Azure Storage
+account, an Azure Storage container, and an Azure Storage key.
+You can sign-up and create those at <a href='https://portal.azure.com'>portal.azure.com</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>board_register_azure</span><span class='op'>(</span>
@@ -205,18 +200,20 @@ multiple boards.</p></td>
     </tr>
     <tr>
       <th>container</th>
-      <td><p>The name of the Azure Storage container. Defaults to the <code>AZURE_STORAGE_CONTAINER</code> environment
-variable.</p></td>
+      <td><p>The name of the Azure Storage container.</p></td>
     </tr>
     <tr>
       <th>account</th>
-      <td><p>The account of the Azure Storage container. Defaults to the <code>AZURE_STORAGE_ACCOUNT</code> environment
-variable.</p></td>
+      <td><p>The name of the Azure Storage account.</p></td>
     </tr>
     <tr>
       <th>key</th>
-      <td><p>The key of the Azure Storage container Defaults to the <code>AZURE_STORAGE_KEY</code> environment
-variable.</p></td>
+      <td><p>The access key for the Azure Storage container. You can find
+this under "Access keys" in your storage account settings.</p>
+<p>The <code>key</code> is equivalent to a password, so generally should not be stored
+in your script. The easiest alternative is to store it in the
+<code>AZURE_STORAGE_KEY</code> environment variable, which <code>board_azure()</code> will
+use by default.</p></td>
     </tr>
     <tr>
       <th>cache</th>
@@ -232,13 +229,14 @@ variable.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This function requires an Azure Storage container to be manually created; otherwise,
-registering an Azire board will fail.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>board_register</p></div>
+    <div class='dont-index'><p>board_register</p>
+<p>Other boards: 
+<code><a href='board_register_github.html'>board_register_github</a>()</code>,
+<code><a href='board_register_local.html'>board_register_local</a>()</code>,
+<code><a href='board_register_rsconnect.html'>board_register_rsconnect</a>()</code>,
+<code><a href='board_register_s3.html'>board_register_s3</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

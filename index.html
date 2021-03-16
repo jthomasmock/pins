@@ -66,9 +66,6 @@
       <a href="articles/pins-rstudio.html">Using Pins in RStudio</a>
     </li>
     <li>
-      <a href="articles/boards-understanding.html">Understanding Boards</a>
-    </li>
-    <li>
       <a href="articles/advanced-versions.html">Versioning</a>
     </li>
     <li>
@@ -95,10 +92,6 @@
     </li>
     <li>
       <a href="articles/boards-extending.html">Extending Boards</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -140,7 +133,7 @@
 <li>
 <strong>Discover</strong> new resources across different boards using <code><a href="reference/pin_find.html">pin_find()</a></code>.</li>
 <li>
-<strong>Share</strong> resources in local folders, GitHub, Kaggle, and RStudio Connect by registering new boards with <code><a href="reference/board_register.html">board_register()</a></code>.</li>
+<strong>Share</strong> resources in local folders, with RStudio Connect, on S3, and more.</li>
 </ul>
 </div>
 <div id="installation" class="section level2">
@@ -174,10 +167,10 @@
 <li>
 <p>Pin an expensive local computation with <code><a href="reference/pin.html">pin(object, name)</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="va">retail_sales</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu">month</span><span class="op">(</span><span class="va">ds</span>, <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise</span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu">month</span><span class="op">(</span><span class="va">ds</span>, <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/pin.html">pin</a></span><span class="op">(</span><span class="st">"sales_by_month"</span><span class="op">)</span></code></pre></div>
 <p>Then later retrieve it with <code><a href="reference/pin_get.html">pin_get(name)</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -203,7 +196,7 @@
 <div id="discover" class="section level3">
 <h3 class="hasAnchor">
 <a href="#discover" class="anchor"></a>Discover</h3>
-<p>You can also discover remote resources using <code><a href="reference/pin_find.html">pin_find()</a></code>. It can search for resources in CRAN packages, Kaggle, and RStudio Connect. For instance, we can search datasets mentioning “seattle” in CRAN packages with:</p>
+<p>You can also discover remote resources using <code><a href="reference/pin_find.html">pin_find()</a></code> which searches any registered boards. For instance, we can search datasets mentioning “seattle” in CRAN packages with:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pin_find.html">pin_find</a></span><span class="op">(</span><span class="st">"seattle"</span>, board <span class="op">=</span> <span class="st">"packages"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 4</span>
@@ -218,35 +211,26 @@
 <p>Notice that the full name of a pin is <code>&lt;owner&gt;/&lt;name&gt;</code>. This namespacing allows multiple people (or packages) to create pins with the same name.</p>
 <p>You can then retrieve a pin through <code><a href="reference/pin_get.html">pin_get()</a></code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">seattle_sales</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pin_get.html">pin_get</a></span><span class="op">(</span><span class="st">"hpiR/seattle_sales"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 43,313 x 16</span>
-<span class="co">#&gt;    pinx    sale_id  sale_price sale_date  use_type  area lot_sf  wfnt bldg_grade</span>
-<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;         &lt;int&gt; &lt;date&gt;     &lt;chr&gt;    &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;      &lt;int&gt;</span>
-<span class="co">#&gt;  1 ..0001… 2013..2…     289000 2013-02-06 sfr         79   9295     0          7</span>
-<span class="co">#&gt;  2 ..0001… 2013..2…     356000 2013-07-11 sfr         18   6000     0          6</span>
-<span class="co">#&gt;  3 ..0001… 2010..2…     333500 2010-12-29 sfr         79   7200     0          8</span>
-<span class="co">#&gt;  4 ..0001… 2016..6…     577200 2016-03-17 sfr         79   7200     0          8</span>
-<span class="co">#&gt;  5 ..0001… 2012..9…     237000 2012-05-02 sfr         79   5662     0          7</span>
-<span class="co">#&gt;  6 ..0001… 2014..5…     347500 2014-03-11 sfr         79   5830     0          7</span>
-<span class="co">#&gt;  7 ..0001… 2012..2…     429000 2012-09-20 sfr         18  12700     0          7</span>
-<span class="co">#&gt;  8 ..0003… 2015..2…     653295 2015-07-21 sfr         79   7000     0          7</span>
-<span class="co">#&gt;  9 ..0003… 2014..4…     427650 2014-02-19 townhou…    79   3072     0          7</span>
-<span class="co">#&gt; 10 ..0003… 2015..6…     488737 2015-03-19 townhou…    79   3072     0          7</span>
-<span class="co">#&gt; # … with 43,303 more rows, and 7 more variables: tot_sf &lt;int&gt;, beds &lt;int&gt;,</span>
-<span class="co">#&gt; #   baths &lt;dbl&gt;, age &lt;int&gt;, eff_age &lt;int&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;</span></code></pre></div>
+<code class="sourceCode R"><span class="va">seattle_sales</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pin_get.html">pin_get</a></span><span class="op">(</span><span class="st">"hpiR/seattle_sales"</span><span class="op">)</span>
+<span class="va">seattle_sales</span></code></pre></div>
 <p>Or explore additional properties in this pin with <code><a href="reference/pin_info.html">pin_info()</a></code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/pin_info.html">pin_info</a></span><span class="op">(</span><span class="st">"hpiR/seattle_sales"</span><span class="op">)</span>
-<span class="co">#&gt; # Source: packages&lt;hpiR/seattle_sales&gt; [table]</span>
-<span class="co">#&gt; # Description: Seattle Home Sales from hpiR package.</span>
-<span class="co">#&gt; # Properties:</span>
-<span class="co">#&gt; #   rows: 43313</span>
-<span class="co">#&gt; #   cols: 16</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="reference/pin_info.html">pin_info</a></span><span class="op">(</span><span class="st">"hpiR/seattle_sales"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="share" class="section level3">
 <h3 class="hasAnchor">
 <a href="#share" class="anchor"></a>Share</h3>
-<p>Finally, you can share resources with other users by publishing to <a href="https://pins.rstudio.com/articles/boards-kaggle.html">Kaggle</a>, <a href="https://pins.rstudio.com/articles/boards-github.html">GitHub</a>, <a href="https://pins.rstudio.com/articles/boards-rsconnect.html">RStudio Connect</a>, <a href="https://pins.rstudio.com/articles/boards-azure.html">Azure</a>, <a href="https://pins.rstudio.com/articles/boards-gcloud.html">Google Cloud</a>, <a href="https://pins.rstudio.com/articles/boards-s3.html">S3</a>, <a href="https://pins.rstudio.com/articles/boards-dospace.html">DigitalOcean</a> or integrate them into your <a href="https://pins.rstudio.com/articles/boards-websites.html">website</a> as well.</p>
+<p>You can share resources with others by publishing to:</p>
+<ul>
+<li>Shared folders, <code><a href="reference/board_register_local.html">board_local()</a></code>.</li>
+<li>GitHub, <code><a href="reference/board_register_github.html">board_github()</a></code>.</li>
+<li>RStudio Connect, <code><a href="reference/board_register_rsconnect.html">board_rsconnect()</a></code>
+</li>
+<li>Azure, <code><a href="reference/board_register_azure.html">board_azure()</a></code>
+</li>
+<li>S3, <code><a href="reference/board_register_s3.html">board_s3()</a></code>
+</li>
+</ul>
 <p>To publish to Kaggle, you would first need to register the Kaggle board by creating a <a href="https://www.kaggle.com/me/account">Kaggle API Token</a>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/board_register_kaggle.html">board_register_kaggle</a></span><span class="op">(</span>token <span class="op">=</span> <span class="st">"&lt;path-to-kaggle.json&gt;"</span><span class="op">)</span></code></pre></div>
@@ -256,7 +240,7 @@
 <center>
 <img src="tools/readme/kaggle-uploaded-dataset.png" width="70%">
 </center>
-<p>Learn more in <code><a href="articles/boards-understanding.html">vignette("boards-understanding")</a></code></p>
+<p>Learn more in <code>vignette("boards-understanding")</code></p>
 </div>
 <div id="rstudio" class="section level3">
 <h3 class="hasAnchor">
@@ -275,11 +259,11 @@
 </center>
 <p>You can then <strong>share</strong> local resources using the RStudio Connect board. Lets use <code>dplyr</code> and the <code>hpiR_seattle_sales</code> pin to analyze this further and then pin our results in RStudio Connect.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/board_register_rsconnect.html">board_register_rsconnect</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"myrsc"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">seattle_sales</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span>baths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">baths</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise</span><span class="op">(</span>sale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sale_price</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/board_register_rsconnect.html">board_register_rsconnect</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"myrsc"</span><span class="op">)</span>
+
+<span class="va">seattle_sales</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>baths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">baths</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sale_price</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/pin.html">pin</a></span><span class="op">(</span><span class="st">"sales-by-baths"</span>, board <span class="op">=</span> <span class="st">"myrsc"</span><span class="op">)</span></code></pre></div>
 <p>After a pin is published, you can then browse to the pin’s content from the RStudio Connect web interface.</p>
 <center>
@@ -287,14 +271,14 @@
 </center>
 <p>You can now set the appropriate permissions in RStudio Connect, and voila! From now on, those with access can make use of this remote file locally!</p>
 <p>For instance, a colleague can reuse the <code>sales-by-baths</code> pin by retrieving it from RStudio Connect and visualize its contents using ggplot2:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/board_register_rsconnect.html">board_register_rsconnect</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"myrsc"</span><span class="op">)</span>
 
 <span class="fu"><a href="reference/pin_get.html">pin_get</a></span><span class="op">(</span><span class="st">"sales-by-baths"</span>, board <span class="op">=</span> <span class="st">"myrsc"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">baths</span>, y <span class="op">=</span> <span class="va">sale</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">'lm'</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">baths</span>, y <span class="op">=</span> <span class="va">sale</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">'lm'</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="tools/readme/rstudio-plot-pin-1.png" style="display: block; margin: auto;"></p>
 <p>Pins can also be automated using scheduled R Markdown. This makes it much easier to create Shiny applications that rely on scheduled data updates or to share prepared resources across multiple pieces of content. You no longer have to fuss with file paths on RStudio Connect, mysterious resource URLs, or redeploying application code just to update a dataset!</p>
 </div>

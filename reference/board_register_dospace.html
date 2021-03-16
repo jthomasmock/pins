@@ -49,8 +49,9 @@
   
 
 <meta property="og:title" content="Register DigitalOcean Board — board_register_dospace" />
-<meta property="og:description" content="Wrapper with explicit parameters over board_register() to
-register a DigitalOcean Spaces board." />
+<meta property="og:description" content="To use DigitalOcean Spaces as a board, you first
+need an DigitalOcean space and a storage key. You can sign-up and create
+those at digitalocean.com." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -106,9 +107,6 @@ register a DigitalOcean Spaces board." />
       <a href="../articles/pins-rstudio.html">Using Pins in RStudio</a>
     </li>
     <li>
-      <a href="../articles/boards-understanding.html">Understanding Boards</a>
-    </li>
-    <li>
       <a href="../articles/advanced-versions.html">Versioning</a>
     </li>
     <li>
@@ -135,10 +133,6 @@ register a DigitalOcean Spaces board." />
     </li>
     <li>
       <a href="../articles/boards-extending.html">Extending Boards</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -172,8 +166,9 @@ register a DigitalOcean Spaces board." />
     </div>
 
     <div class="ref-description">
-    <p>Wrapper with explicit parameters over <code><a href='board_register.html'>board_register()</a></code> to
-register a DigitalOcean Spaces board.</p>
+    <p>To use DigitalOcean Spaces as a <a href='boards-understanding.html'>board</a>, you first
+need an DigitalOcean space and a storage key. You can sign-up and create
+those at <a href='https://www.digitalocean.com/'>digitalocean.com</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>board_register_dospace</span><span class='op'>(</span>
@@ -209,23 +204,20 @@ multiple boards.</p></td>
     </tr>
     <tr>
       <th>space</th>
-      <td><p>The name of the DigitalOcean space. Defaults to the <code>DO_SPACE</code> environment
-variable.</p></td>
+      <td><p>The name of the DigitalOcean space.</p></td>
     </tr>
     <tr>
-      <th>key</th>
-      <td><p>The key of the DigitalOcean space. Defaults to the <code>DO_ACCESS_KEY_ID</code> environment
-variable.</p></td>
-    </tr>
-    <tr>
-      <th>secret</th>
-      <td><p>The secret of the DigitalOcean space. Defaults to the <code>DO_SECRET_ACCESS_KEY</code> environment
-variable.</p></td>
+      <th>key, secret</th>
+      <td><p>The key and secret for your space. You can create
+a key and secret in the "Spaces access keys" in your API settings.</p>
+<p>The <code>secret</code> is equivalent to a password, so generally should not be stored
+in your script. The easiest alternative is to store it in the
+<code>AZURE_STORAGE_KEY</code> environment variable, which <code><a href='board_register_azure.html'>board_azure()</a></code> will
+use by default.</p></td>
     </tr>
     <tr>
       <th>datacenter</th>
-      <td><p>The datacenter of the DigitalOcean space. Defaults to the <code>DO_DATACENTER</code> environment
-variable.</p></td>
+      <td><p>The datacenter name.</p></td>
     </tr>
     <tr>
       <th>cache</th>
@@ -245,10 +237,6 @@ variable.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This function requires a DigitalOcean space to be manually created; otherwise,
-registering a DigitalOcean space will fail.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>board_register</p></div>
