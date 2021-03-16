@@ -167,7 +167,14 @@
     <p>Find a pin in any board registered using <code><a href='board_register.html'>board_register()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_find</span><span class='op'>(</span>text <span class='op'>=</span> <span class='cn'>NULL</span>, board <span class='op'>=</span> <span class='cn'>NULL</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, extended <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pin_find</span><span class='op'>(</span>
+  text <span class='op'>=</span> <span class='cn'>NULL</span>,
+  board <span class='op'>=</span> <span class='cn'>NULL</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  extended <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  metadata <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,6 +194,10 @@
     <tr>
       <th>extended</th>
       <td><p>Should additional board-specific columns be shown?</p></td>
+    </tr>
+    <tr>
+      <th>metadata</th>
+      <td><p>Include pin metadata in results?</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -227,34 +238,7 @@ boards search for pins.</p>
 #&gt;   name   description                                              type  board   
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> mtcars </span><span style='color: #949494;'>""</span><span>                                                       table local   
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> mtcars </span><span style='color: #949494;'>"</span><span>The data was extracted from the 1974 Motor Trend US ma… table txtexam…</div><div class='input'>
-<span class='co'># search pins related to 'seattle' in the 'packages' board</span>
-<span class='fu'>pin_find</span><span class='op'>(</span><span class='st'>"seattle"</span>, board <span class='op'>=</span> <span class='st'>"packages"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
-#&gt;   name               description                                    type  board 
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> hpiR/ex_sales      Subset of Seattle Home Sales from hpiR packag… table packa…
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> hpiR/seattle_sales Seattle Home Sales from hpiR package.          table packa…
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> latticeExtra/Seat… Daily Rainfall and Temperature at the Seattle… table packa…
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> microsynth/seattl… Data for a crime intervention in Seattle, Was… table packa…
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> vegawidget/data_s… Example dataset: Seattle daily weather from v… table packa…
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> vegawidget/data_s… Example dataset: Seattle hourly temperatures … table packa…</div><div class='input'>
-<span class='co'># search pins related to 'london' in the 'packages' board</span>
-<span class='fu'>pin_find</span><span class='op'>(</span><span class='st'>"london"</span>, board <span class='op'>=</span> <span class='st'>"packages"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 30 x 4</span><span>
-#&gt;    name                     description                             type  board 
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> bsamGP/London.Mortality  Daily Moratlity in London from bsamGP … table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DAAG/poxetc              Deaths from various causes, in London … table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DAAG/whoops              Deaths from whooping cough, in London … table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> epimdr/meas              Bi-weekly measles incidence in London … table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ev.trawl/hourly_bloomsb… Hourly measurements of 6 air pollutant… table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> extremis/lse             Selected Stocks from the London Stock … table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> geofacet/london_afford   london_afford from geofacet package.    table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> HistData/Arbuthnot       Arbuthnot's data on male and female bi… table packa…
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> HistData/Cholera         William Farr's Data on Cholera in Lond… table packa…
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> jomo/ExamScores          Exam results for six inner London Educ… table packa…
-#&gt; </span><span style='color: #949494;'># … with 20 more rows</span><span></div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> mtcars </span><span style='color: #949494;'>"</span><span>The data was extracted from the 1974 Motor Trend US ma… table txtexam…</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

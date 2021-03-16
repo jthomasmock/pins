@@ -173,7 +173,7 @@
 <li><p>Pins no longer register the code needed to recreate them as this tends to either be dangerous (it’s easy to accidentally leak credentails) or useless (it relies on variables that the connection pane doesn’t capture).</p></li>
 <li><p>The board extension interface has changed. More info to follow.</p></li>
 <li><p>All boards now have a <code>board_</code> function that allows you create a board without registering it.</p></li>
-<li><p>The “packages” board is no longer registered by default; if you want to use this you’ll need to register with <code><a href="../reference/board_register.html">board_register("packages")</a></code>.</p></li>
+<li><p>The “packages” board is no longer registered by default; if you want to use this you’ll need to register with <code><a href="../reference/board_register.html">board_register("packages")</a></code>. It has been radically simplified so that it will no longer download packages, and it <code><a href="../reference/pin_find.html">pin_find()</a></code> now searches all packages that you have installed, rather than a stale snapshot of data in CRAN packages. The CRAN files dataset has been removed from the package.</p></li>
 </ul>
 </div>
     <div id="pins-045" class="section level1">
