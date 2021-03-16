@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Find Pin — pin_find" />
-<meta property="og:description" content="Find a pin in any board registered using board_register()." />
+<meta property="og:description" content="Search a board (or boards) for a pin." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -164,7 +164,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Find a pin in any board registered using <code><a href='board_register.html'>board_register()</a></code>.</p>
+    <p>Search a board (or boards) for a pin.</p>
     </div>
 
     <pre class="usage"><span class='fu'>pin_find</span><span class='op'>(</span>
@@ -224,21 +224,19 @@ boards search for pins.</p>
 
 <span class='co'># retrieve pins</span>
 <span class='fu'>pin_find</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 4</span><span>
-#&gt;   name           description                                       type  board  
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> example_retai… </span><span style='color: #949494;'>""</span><span>                                                files local  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> iris           </span><span style='color: #949494;'>"</span><span>This famous (Fisher's or Anderson's) iris data … table txtexa…
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> mtcars         </span><span style='color: #949494;'>""</span><span>                                                table local  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> mtcars         </span><span style='color: #949494;'>"</span><span>The data was extracted from the 1974 Motor Tren… table txtexa…
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> mtefficient    </span><span style='color: #949494;'>""</span><span>                                                table local  </div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 4</span><span>
+#&gt;   name   description                                              type  board   
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> iris   </span><span style='color: #949494;'>"</span><span>This famous (Fisher's or Anderson's) iris data set giv… table txtexam…
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> mtcars </span><span style='color: #949494;'>"</span><span>The data was extracted from the 1974 Motor Trend US ma… table txtexam…
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> mtcars </span><span style='color: #949494;'>""</span><span>                                                       table myboard </div><div class='input'>
 <span class='co'># search pins related to 'cars'</span>
 <span class='fu'>pin_find</span><span class='op'>(</span><span class='st'>"cars"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 4</span><span>
 #&gt;   name   description                                              type  board   
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> mtcars </span><span style='color: #949494;'>""</span><span>                                                       table local   
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> mtcars </span><span style='color: #949494;'>"</span><span>The data was extracted from the 1974 Motor Trend US ma… table txtexam…</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> mtcars </span><span style='color: #949494;'>"</span><span>The data was extracted from the 1974 Motor Trend US ma… table txtexam…
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> mtcars </span><span style='color: #949494;'>""</span><span>                                                       table myboard </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

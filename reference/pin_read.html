@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pin Info — pin_info • pins</title>
+<title>Read and write pins — pin_read • pins</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pin Info — pin_info" />
-<meta property="og:description" content="Retrieve information for a given pin." />
+<meta property="og:title" content="Read and write pins — pin_read" />
+<meta property="og:description" content="Use pin_write() to pin an object to board, and pin_read() to retrieve
+it." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -158,77 +159,67 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pin Info</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/pin_info.R'><code>R/pin_info.R</code></a></small>
-    <div class="hidden name"><code>pin_info.Rd</code></div>
+    <h1>Read and write pins</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/pin-read-write.R'><code>R/pin-read-write.R</code></a></small>
+    <div class="hidden name"><code>pin_read.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve information for a given pin.</p>
+    <p>Use <code>pin_write()</code> to pin an object to board, and <code>pin_read()</code> to retrieve
+it.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_info</span><span class='op'>(</span>
-  <span class='va'>name</span>,
-  board <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extended <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  metadata <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  signature <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pin_read</span><span class='op'>(</span><span class='va'>board</span>, <span class='va'>name</span><span class='op'>)</span>
+
+<span class='fu'>pin_write</span><span class='op'>(</span><span class='va'>board</span>, <span class='va'>x</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, description <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p>The exact name of the pin to match when searching.</p></td>
-    </tr>
-    <tr>
       <th>board</th>
-      <td><p>The board name used to find the pin.</p></td>
+      <td><p>A pin board, created by <code><a href='board_local.html'>board_local()</a></code>, <code><a href='board_rsconnect.html'>board_rsconnect()</a></code>,
+<code><a href='board_github.html'>board_github()</a></code> or other other <code>board_</code> function.</p></td>
     </tr>
     <tr>
-      <th>extended</th>
-      <td><p>Should additional board-specific information be shown?</p></td>
+      <th>name</th>
+      <td><p>Pin name.</p></td>
     </tr>
     <tr>
-      <th>metadata</th>
-      <td><p>Should additional pin-specific information be shown?</p></td>
+      <th>x</th>
+      <td><p>An object (typically a data frame) to pin.</p></td>
     </tr>
     <tr>
-      <th>signature</th>
-      <td><p>Should a signature to identify this pin be shown?</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional parameters.</p></td>
+      <th>description</th>
+      <td><p>A text description of the pin; most important for
+shared boards so that others can understand what the pin contains.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># define board and cache a dataset</span>
-<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_local.html'>board_local</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='pin.html'>pin</a></span><span class='op'>(</span><span class='va'>mtcars</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_local.html'>board_local</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='co'># Get info</span>
-<span class='fu'>pin_info</span><span class='op'>(</span><span class='st'>"mtcars"</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># Source: local&lt;mtcars&gt; [table]
-#&gt; # Properties:
-#&gt; #   rows: 32
-#&gt; #   cols: 11
-#&gt; #   columns:
-#&gt; #     mpg: numeric
-#&gt; #     cyl: numeric
-#&gt; #     disp: numeric
-#&gt; #     hp: numeric
-#&gt; #     drat: numeric
-#&gt; #     wt: numeric
-#&gt; #     qsec: numeric
-#&gt; #     vs: numeric
-#&gt; #     am: numeric
-#&gt; #     gear: numeric
-#&gt; #     carb: numeric</span><span></div></span></pre>
+<span class='va'>b</span> <span class='op'>%&gt;%</span> <span class='fu'>pin_write</span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mtcars"</span><span class='op'>)</span>
+<span class='va'>b</span>
+</div><div class='output co'>#&gt; <span style='font-weight: bold;'>Pin board</span><span> &lt;pins_board_local&gt;
+#&gt; Path: '/tmp/RtmpieRKkH/file3d1441f48305/local'
+#&gt; With 1 pins: 'mtcars'</div><div class='input'>
+<span class='va'>b</span> <span class='op'>%&gt;%</span> <span class='fu'>pin_read</span><span class='op'>(</span><span class='st'>"mtcars"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 32 x 11</span><span>
+#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+#&gt; </span><span style='color: #949494;'># … with 22 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

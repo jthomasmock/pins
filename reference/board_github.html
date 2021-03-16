@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pin Info — pin_info • pins</title>
+<title>Use a GitHub board — board_github • pins</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pin Info — pin_info" />
-<meta property="og:description" content="Retrieve information for a given pin." />
+<meta property="og:title" content="Use a GitHub board — board_github" />
+<meta property="og:description" content="To use a GitHub board, you'll need to set up authentication. This is likely
+to just work if you already use GitHub for other purposes since pins will
+inspect your  GITHUB_PAT environment variable. Otherwise, you can follow
+the instructions at https://happygitwithr.com/credential-caching.html to
+get set up." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -158,21 +162,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pin Info</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/pin_info.R'><code>R/pin_info.R</code></a></small>
-    <div class="hidden name"><code>pin_info.Rd</code></div>
+    <h1>Use a GitHub board</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/board_github.R'><code>R/board_github.R</code></a></small>
+    <div class="hidden name"><code>board_github.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve information for a given pin.</p>
+    <p>To use a GitHub board, you'll need to set up authentication. This is likely
+to just work if you already use GitHub for other purposes since pins will
+inspect your  <code>GITHUB_PAT</code> environment variable. Otherwise, you can follow
+the instructions at <a href='https://happygitwithr.com/credential-caching.html'>https://happygitwithr.com/credential-caching.html</a> to
+get set up.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_info</span><span class='op'>(</span>
-  <span class='va'>name</span>,
-  board <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extended <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  metadata <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  signature <span class='op'>=</span> <span class='cn'>FALSE</span>,
+    <pre class="usage"><span class='fu'>board_github</span><span class='op'>(</span>
+  repo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  branch <span class='op'>=</span> <span class='cn'>NULL</span>,
+  token <span class='op'>=</span> <span class='cn'>NULL</span>,
+  path <span class='op'>=</span> <span class='st'>""</span>,
+  host <span class='op'>=</span> <span class='st'>"https://api.github.com"</span>,
+  name <span class='op'>=</span> <span class='st'>"github"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -180,55 +189,63 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>repo</th>
+      <td><p>The GitHub repository formatted as 'owner/repo', can be
+<code>NULL</code> if the <code>GITHUB_PAT</code> environment variable is set.</p></td>
+    </tr>
+    <tr>
+      <th>branch</th>
+      <td><p>The branch to use to commit pins.</p></td>
+    </tr>
+    <tr>
+      <th>token</th>
+      <td><p>Token to use when <code>GITHUB_PAT</code> is not specified.</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>The subdirectory in the repo where the pins will be stored.</p></td>
+    </tr>
+    <tr>
+      <th>host</th>
+      <td><p>The URL of the GitHub API. You'll need to customise
+this to use GitHub enterprise, e.g. <code>"https://yourhostname/api/v3"</code>.</p></td>
+    </tr>
+    <tr>
       <th>name</th>
-      <td><p>The exact name of the pin to match when searching.</p></td>
-    </tr>
-    <tr>
-      <th>board</th>
-      <td><p>The board name used to find the pin.</p></td>
-    </tr>
-    <tr>
-      <th>extended</th>
-      <td><p>Should additional board-specific information be shown?</p></td>
-    </tr>
-    <tr>
-      <th>metadata</th>
-      <td><p>Should additional pin-specific information be shown?</p></td>
-    </tr>
-    <tr>
-      <th>signature</th>
-      <td><p>Should a signature to identify this pin be shown?</p></td>
+      <td><p>An optional name used identify the board. This is no longer
+generally needed since you should be passing around an explicit
+board object.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters.</p></td>
+      <td><p>Additional parameters required to initialize a particular board.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="large-files"><a class="anchor" href="#large-files"></a>Large Files</h2>
+
+    <p>A GitHub repo only supports files under 25MB in size (100MB in theory but
+there is additional overhead when using the GitHub API). To store large
+files, GitHub
+<a href='https://help.github.com/en/articles/distributing-large-binaries'>recommends</a>
+storing them using GitHub Releases which support up to 2GB files, which
+is what pins uses. You don't need to do anything extra as this will happen
+behind the scenes, but don't be surprised if pins creates releases in your
+repo.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other boards: 
+<code><a href='board_azure.html'>board_azure</a>()</code>,
+<code><a href='board_local.html'>board_local</a>()</code>,
+<code><a href='board_rsconnect.html'>board_rsconnect</a>()</code>,
+<code><a href='board_s3.html'>board_s3</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># define board and cache a dataset</span>
-<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_local.html'>board_local</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='pin.html'>pin</a></span><span class='op'>(</span><span class='va'>mtcars</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-
-<span class='co'># Get info</span>
-<span class='fu'>pin_info</span><span class='op'>(</span><span class='st'>"mtcars"</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># Source: local&lt;mtcars&gt; [table]
-#&gt; # Properties:
-#&gt; #   rows: 32
-#&gt; #   cols: 11
-#&gt; #   columns:
-#&gt; #     mpg: numeric
-#&gt; #     cyl: numeric
-#&gt; #     disp: numeric
-#&gt; #     hp: numeric
-#&gt; #     drat: numeric
-#&gt; #     wt: numeric
-#&gt; #     qsec: numeric
-#&gt; #     vs: numeric
-#&gt; #     am: numeric
-#&gt; #     gear: numeric
-#&gt; #     carb: numeric</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># the following example requires a GitHub API key</span>
+<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'>board_github</span><span class='op'>(</span>repo <span class='op'>=</span> <span class='st'>"owner/repo"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

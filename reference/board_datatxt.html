@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pin Info — pin_info • pins</title>
+<title>Use a remote "data.txt" board — board_datatxt • pins</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pin Info — pin_info" />
-<meta property="og:description" content="Retrieve information for a given pin." />
+<meta property="og:title" content="Use a remote "data.txt" board — board_datatxt" />
+<meta property="og:description" content="Use board that for a website that uses the data.txt
+specification. A data.txt file is a YAML that provides some basic metadata
+about a directory of files." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -158,21 +160,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pin Info</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/pin_info.R'><code>R/pin_info.R</code></a></small>
-    <div class="hidden name"><code>pin_info.Rd</code></div>
+    <h1>Use a remote "data.txt" board</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/board_datatxt.R'><code>R/board_datatxt.R</code></a></small>
+    <div class="hidden name"><code>board_datatxt.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve information for a given pin.</p>
+    <p>Use board that for a website that uses the <a href='https://datatxt.org'>data.txt</a>
+specification. A <code>data.txt</code> file is a YAML that provides some basic metadata
+about a directory of files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_info</span><span class='op'>(</span>
-  <span class='va'>name</span>,
-  board <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extended <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  metadata <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  signature <span class='op'>=</span> <span class='cn'>FALSE</span>,
+    <pre class="usage"><span class='fu'>board_datatxt</span><span class='op'>(</span>
+  <span class='va'>url</span>,
+  headers <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  needs_index <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  browse_url <span class='op'>=</span> <span class='va'>url</span>,
+  index_updated <span class='op'>=</span> <span class='cn'>NULL</span>,
+  index_randomize <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  versions <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -180,55 +189,73 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>url</th>
+      <td><p>Path to the <code>data.txt</code> file or directory containing it.</p></td>
+    </tr>
+    <tr>
+      <th>headers</th>
+      <td><p>Optional list of headers to include or a function to generate them.</p></td>
+    </tr>
+    <tr>
+      <th>cache</th>
+      <td><p>Cache path. Every board requires a local cache to avoid
+downloading files multiple times. The default stores in a standard
+cache location for your operating system, but you can override if needed.</p></td>
+    </tr>
+    <tr>
+      <th>needs_index</th>
+      <td><p>Does this board have an index file?</p></td>
+    </tr>
+    <tr>
+      <th>browse_url</th>
+      <td><p>Not currently used</p></td>
+    </tr>
+    <tr>
+      <th>index_updated</th>
+      <td><p>Callback function used to update index</p></td>
+    </tr>
+    <tr>
+      <th>index_randomize</th>
+      <td><p>When retrieving <code>data.txt</code> at a parameter with random
+query string to defeat caching?</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>Subdirectory within <code>url</code></p></td>
+    </tr>
+    <tr>
+      <th>versions</th>
+      <td><p>Should this board be registered with support for versions?</p></td>
+    </tr>
+    <tr>
       <th>name</th>
-      <td><p>The exact name of the pin to match when searching.</p></td>
-    </tr>
-    <tr>
-      <th>board</th>
-      <td><p>The board name used to find the pin.</p></td>
-    </tr>
-    <tr>
-      <th>extended</th>
-      <td><p>Should additional board-specific information be shown?</p></td>
-    </tr>
-    <tr>
-      <th>metadata</th>
-      <td><p>Should additional pin-specific information be shown?</p></td>
-    </tr>
-    <tr>
-      <th>signature</th>
-      <td><p>Should a signature to identify this pin be shown?</p></td>
+      <td><p>An optional name used identify the board. This is no longer
+generally needed since you should be passing around an explicit
+board object.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters.</p></td>
+      <td><p>Additional parameters required to initialize a particular board.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># define board and cache a dataset</span>
-<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_local.html'>board_local</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='pin.html'>pin</a></span><span class='op'>(</span><span class='va'>mtcars</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># register website board using datatxt file</span>
+<span class='fu'><a href='board_register.html'>board_register_datatxt</a></span><span class='op'>(</span>
+  url <span class='op'>=</span> <span class='st'>"https://datatxt.org/data.txt"</span>,
+  name <span class='op'>=</span> <span class='st'>"txtexample"</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='co'># Get info</span>
-<span class='fu'>pin_info</span><span class='op'>(</span><span class='st'>"mtcars"</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># Source: local&lt;mtcars&gt; [table]
-#&gt; # Properties:
-#&gt; #   rows: 32
-#&gt; #   cols: 11
-#&gt; #   columns:
-#&gt; #     mpg: numeric
-#&gt; #     cyl: numeric
-#&gt; #     disp: numeric
-#&gt; #     hp: numeric
-#&gt; #     drat: numeric
-#&gt; #     wt: numeric
-#&gt; #     qsec: numeric
-#&gt; #     vs: numeric
-#&gt; #     am: numeric
-#&gt; #     gear: numeric
-#&gt; #     carb: numeric</span><span></div></span></pre>
+<span class='co'># find pins</span>
+<span class='fu'><a href='pin_find.html'>pin_find</a></span><span class='op'>(</span>board <span class='op'>=</span> <span class='st'>"txtexample"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 4</span><span>
+#&gt;   name   description                                              type  board   
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> iris   This famous (Fisher's or Anderson's) iris data set give… table txtexam…
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> mtcars The data was extracted from the 1974 Motor Trend US mag… table txtexam…</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pin Info — pin_info • pins</title>
+<title>Use a Google Cloud board — board_gcloud • pins</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pin Info — pin_info" />
-<meta property="og:description" content="Retrieve information for a given pin." />
+<meta property="og:title" content="Use a Google Cloud board — board_gcloud" />
+<meta property="og:description" content="To use a Google Cloud Storage board, you first need a Google Cloud Storage
+account, a Google Storage bucket, and an access token or the
+Google Cloud SDK properly installed and
+configured. You can sign-up and create these from
+https://console.cloud.google.com" />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -158,21 +162,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pin Info</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/pin_info.R'><code>R/pin_info.R</code></a></small>
-    <div class="hidden name"><code>pin_info.Rd</code></div>
+    <h1>Use a Google Cloud board</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/board_gcloud.R'><code>R/board_gcloud.R</code></a></small>
+    <div class="hidden name"><code>board_gcloud.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve information for a given pin.</p>
+    <p>To use a Google Cloud Storage board, you first need a Google Cloud Storage
+account, a Google Storage bucket, and an access token or the
+<a href='https://cloud.google.com/sdk/'>Google Cloud SDK</a> properly installed and
+configured. You can sign-up and create these from
+<a href='https://console.cloud.google.com'>https://console.cloud.google.com</a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_info</span><span class='op'>(</span>
-  <span class='va'>name</span>,
-  board <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extended <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  metadata <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  signature <span class='op'>=</span> <span class='cn'>FALSE</span>,
+    <pre class="usage"><span class='fu'>board_gcloud</span><span class='op'>(</span>
+  bucket <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"GCLOUD_STORAGE_BUCKET"</span><span class='op'>)</span>,
+  token <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cache <span class='op'>=</span> <span class='cn'>NULL</span>,
+  name <span class='op'>=</span> <span class='st'>"gcloud"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -180,55 +187,44 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>bucket</th>
+      <td><p>The name of the Google Cloud Storage bucket. Defaults to the <code>GCLOUD_STORAGE_BUCKET</code> environment
+variable.</p></td>
+    </tr>
+    <tr>
+      <th>token</th>
+      <td><p>The access token of the Google Cloud Storage container.
+Generally, it's best to leave this as <code>NULL</code>, and rely on the installed
+Google Cloud SDK to handle authentication.</p>
+<p>If you do want to use an access token, you can retrieve it from
+<a href='https://developers.google.com/oauthplayground'>https://developers.google.com/oauthplayground</a>. You will need to
+authorize the "Google Storage API v1" scope.</p></td>
+    </tr>
+    <tr>
+      <th>cache</th>
+      <td><p>Cache path. Every board requires a local cache to avoid
+downloading files multiple times. The default stores in a standard
+cache location for your operating system, but you can override if needed.</p></td>
+    </tr>
+    <tr>
       <th>name</th>
-      <td><p>The exact name of the pin to match when searching.</p></td>
-    </tr>
-    <tr>
-      <th>board</th>
-      <td><p>The board name used to find the pin.</p></td>
-    </tr>
-    <tr>
-      <th>extended</th>
-      <td><p>Should additional board-specific information be shown?</p></td>
-    </tr>
-    <tr>
-      <th>metadata</th>
-      <td><p>Should additional pin-specific information be shown?</p></td>
-    </tr>
-    <tr>
-      <th>signature</th>
-      <td><p>Should a signature to identify this pin be shown?</p></td>
+      <td><p>An optional name used identify the board. This is no longer
+generally needed since you should be passing around an explicit
+board object.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters.</p></td>
+      <td><p>Additional parameters required to initialize a particular board.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># define board and cache a dataset</span>
-<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_local.html'>board_local</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='pin.html'>pin</a></span><span class='op'>(</span><span class='va'>mtcars</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-
-<span class='co'># Get info</span>
-<span class='fu'>pin_info</span><span class='op'>(</span><span class='st'>"mtcars"</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># Source: local&lt;mtcars&gt; [table]
-#&gt; # Properties:
-#&gt; #   rows: 32
-#&gt; #   cols: 11
-#&gt; #   columns:
-#&gt; #     mpg: numeric
-#&gt; #     cyl: numeric
-#&gt; #     disp: numeric
-#&gt; #     hp: numeric
-#&gt; #     drat: numeric
-#&gt; #     wt: numeric
-#&gt; #     qsec: numeric
-#&gt; #     vs: numeric
-#&gt; #     am: numeric
-#&gt; #     gear: numeric
-#&gt; #     carb: numeric</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># the following example requires the Google Cloud SDK to be configured</span>
+<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'>board_gcloud</span><span class='op'>(</span>container <span class='op'>=</span> <span class='st'>"gcloudcontainer"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

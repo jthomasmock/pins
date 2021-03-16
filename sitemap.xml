@@ -4,55 +4,40 @@
     <loc>https://pins.rstudio.com/index.html</loc>
   </url>
   <url>
+    <loc>https://pins.rstudio.com/reference/board_azure.html</loc>
+  </url>
+  <url>
     <loc>https://pins.rstudio.com/reference/board_cache_path.html</loc>
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/board_connect.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_default.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_datatxt.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_deregister.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_dospace.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_disconnect.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_gcloud.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_get.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_github.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_list.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_kaggle.html</loc>
+  </url>
+  <url>
+    <loc>https://pins.rstudio.com/reference/board_local.html</loc>
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/board_register.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_register_azure.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_rsconnect.html</loc>
   </url>
   <url>
-    <loc>https://pins.rstudio.com/reference/board_register_datatxt.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_dospace.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_gcloud.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_github.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_kaggle.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_local.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_rsconnect.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_register_s3.html</loc>
+    <loc>https://pins.rstudio.com/reference/board_s3.html</loc>
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/board_test.html</loc>
@@ -65,6 +50,9 @@
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/custom-pins.html</loc>
+  </url>
+  <url>
+    <loc>https://pins.rstudio.com/reference/new_board.html</loc>
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/pin.html</loc>
@@ -86,6 +74,9 @@
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/pin_reactive.html</loc>
+  </url>
+  <url>
+    <loc>https://pins.rstudio.com/reference/pin_read.html</loc>
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/pin_remove.html</loc>

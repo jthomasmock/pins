@@ -246,8 +246,8 @@ options(pins.verbose = TRUE)</a></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pin_get.html">pin_get</a></span><span class="op">(</span><span class="st">"home_price_indexes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">read_csv</span><span class="op">(</span>col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">yr</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">group_by</span><span class="op">(</span><span class="va">yr</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pin.html">pin</a></span><span class="op">(</span><span class="st">"home_price_analysis"</span><span class="op">)</span></code></pre></div>
 <p>The local board allows you to share pins with other R sessions.</p>
 </div>
@@ -256,13 +256,13 @@ options(pins.verbose = TRUE)</a></code></pre>
 <a href="#sharing" class="anchor"></a>Sharing</h2>
 <p>This is useful because it saves time downloading or processing data, but it doesn’t help get your data into the hands of other people. To take full advantage of pins, you probably want to also storing pins in shared locations that others can access:</p>
 <ul>
-<li>Shared folders, <code><a href="../reference/board_register_local.html">board_local()</a></code>.</li>
-<li>GitHub, <code><a href="../reference/board_register_github.html">board_github()</a></code>.</li>
-<li>RStudio Connect, <code><a href="../reference/board_register_rsconnect.html">board_rsconnect()</a></code>
+<li>Shared folders, <code><a href="../reference/board_local.html">board_local()</a></code>.</li>
+<li>GitHub, <code><a href="../reference/board_github.html">board_github()</a></code>.</li>
+<li>RStudio Connect, <code><a href="../reference/board_rsconnect.html">board_rsconnect()</a></code>
 </li>
-<li>Azure, <code><a href="../reference/board_register_azure.html">board_azure()</a></code>
+<li>Azure, <code><a href="../reference/board_azure.html">board_azure()</a></code>
 </li>
-<li>S3, <code><a href="../reference/board_register_s3.html">board_s3()</a></code>
+<li>S3, <code><a href="../reference/board_s3.html">board_s3()</a></code>
 </li>
 </ul>
 </div>
