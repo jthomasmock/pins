@@ -160,7 +160,7 @@ configured with the pins.board option." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Default Board</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/board.R'><code>R/board.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/board_registry.R'><code>R/board_registry.R</code></a></small>
     <div class="hidden name"><code>board_default.Rd</code></div>
     </div>
 
@@ -186,19 +186,19 @@ configured with the <code>pins.board</code> option.</p>
 <span class='co'># retrieve default board</span>
 <span class='fu'>board_default</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $board
-#&gt; [1] "local"
+#&gt; [1] "pins_board_local"
 #&gt; 
 #&gt; $name
 #&gt; [1] "temp"
 #&gt; 
 #&gt; $cache
-#&gt; [1] "/tmp/Rtmpw77hbM/file3cd6320e1f11"
+#&gt; [1] "/tmp/RtmpK7CSBi/file3d2e3bf45865"
 #&gt; 
 #&gt; $versions
 #&gt; [1] FALSE
 #&gt; 
 #&gt; attr(,"class")
-#&gt; [1] "local"      "pins_board"</div><div class='input'>
+#&gt; [1] "pins_board_local" "pins_board"      </div><div class='input'>
 <span class='co'># revert default board</span>
 <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>pins.board <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 </div></pre>
