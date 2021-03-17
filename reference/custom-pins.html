@@ -173,11 +173,13 @@
   <span class='va'>board</span>,
   <span class='va'>path</span>,
   <span class='va'>name</span>,
-  <span class='va'>description</span>,
-  <span class='va'>type</span>,
-  <span class='va'>metadata</span>,
+  <span class='va'>pin_metadata</span>,
   extract <span class='op'>=</span> <span class='cn'>TRUE</span>,
   retrieve <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  zip <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  cache <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  metadata <span class='op'>=</span> <span class='cn'>NULL</span>,
+  custom_metadata <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -201,6 +203,19 @@
       <td><p>The name of the pin.</p></td>
     </tr>
     <tr>
+      <th>pin_metadata</th>
+      <td><p>A list of pin metadata describing the pin. Must contain
+<code>type</code> and <code>description</code>.</p></td>
+    </tr>
+    <tr>
+      <th>retrieve</th>
+      <td><p>Should the pin be retrieved after being created? Defaults to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>custom_metadata</th>
+      <td><p>Deprecated. Please use <code>metadata</code> instead.</p></td>
+    </tr>
+    <tr>
       <th>description</th>
       <td><p>The text patteren to find a pin.</p></td>
     </tr>
@@ -209,12 +224,8 @@
       <td><p>The type of pin being stored.</p></td>
     </tr>
     <tr>
-      <th>metadata</th>
-      <td><p>A list containing additional metadata describing the pin.</p></td>
-    </tr>
-    <tr>
-      <th>retrieve</th>
-      <td><p>Should the pin be retrieved after being created? Defaults to <code>TRUE</code>.</p></td>
+      <th>metadat</th>
+      <td><p>Additional user supplied metadata.</p></td>
     </tr>
     </table>
 

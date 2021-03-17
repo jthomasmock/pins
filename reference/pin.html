@@ -221,13 +221,11 @@ tools and programming languages.</p>
 
 <span class='co'># retrieve cached pin</span>
 <span class='fu'><a href='pin_get.html'>pin_get</a></span><span class='op'>(</span><span class='st'>"mtefficient"</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 11</span><span>
-#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2</div><div class='input'>
+</div><div class='output co'>#&gt;                 mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#&gt; Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
+#&gt; Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
+#&gt; Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
+#&gt; Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</div><div class='input'>
 <span class='co'># url to remote resource</span>
 <span class='va'>resource</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span>
   <span class='st'>"https://raw.githubusercontent.com/facebook/prophet"</span>,
@@ -240,14 +238,14 @@ tools and programming languages.</p>
 <span class='co'># cache and read csv</span>
 <span class='va'>path</span> <span class='op'>&lt;-</span> <span class='fu'>pin</span><span class='op'>(</span><span class='va'>resource</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
 <span class='va'>path</span>
-</div><div class='output co'>#&gt; [1] "/tmp/RtmpgIe8T9/file3b72c555101/local/example_retail_sales/example_retail_sales.csv"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "/tmp/Rtmpa1Kl9A/file3bbf4d1edc8a/local/example-retail-sales/example_retail_sales.csv"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;           ds      y
 #&gt; 1 1992-01-01 146376
 #&gt; 2 1992-02-01 147079
 #&gt; 3 1992-03-01 159336
 #&gt; 4 1992-04-01 163669
 #&gt; 5 1992-05-01 170068
-#&gt; 6 1992-06-01 168663</div></span></pre>
+#&gt; 6 1992-06-01 168663</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
