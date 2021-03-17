@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Custom Pins — pin_preview • pins</title>
+<title>Custom Pins — pin_load • pins</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Custom Pins — pin_preview" />
+<meta property="og:title" content="Custom Pins — pin_load" />
 <meta property="og:description" content="Family of functions meant to be used to implement custom pin extensions, not to be used by users." />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
@@ -167,9 +167,7 @@
     <p>Family of functions meant to be used to implement custom pin extensions, not to be used by users.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pin_preview</span><span class='op'>(</span><span class='va'>x</span>, board <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='fu'>pin_load</span><span class='op'>(</span><span class='va'>path</span>, <span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>pin_load</span><span class='op'>(</span><span class='va'>path</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>board_pin_store</span><span class='op'>(</span>
   <span class='va'>board</span>,
@@ -187,16 +185,16 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>board</th>
-      <td><p>The board to extended, retrieved with <code><a href='board_register.html'>board_get()</a></code>.</p></td>
+      <th>path</th>
+      <td><p>The path to store.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Additional parameteres.</p></td>
     </tr>
     <tr>
-      <th>path</th>
-      <td><p>The path to store.</p></td>
+      <th>board</th>
+      <td><p>The board to extended, retrieved with <code><a href='board_register.html'>board_get()</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
