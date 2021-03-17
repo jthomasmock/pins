@@ -171,14 +171,14 @@ board_rsconnect() etc." />
     <p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a></p>
 <p>Prior to pins 1.0.0, boards were managed using a named registry, with
 <code><a href='pin.html'>pin()</a></code> and <code><a href='pin_get.html'>pin_get()</a></code> defaulting to a local board. Now, you must
-explicitly supply a <code>board</code> that you've created using <code><a href='board_local.html'>board_local()</a></code>,
+explicitly supply a <code>board</code> that you've created using <code><a href='board_folder.html'>board_local()</a></code>,
 <code><a href='board_rsconnect.html'>board_rsconnect()</a></code> etc.</p>
     </div>
 
     <pre class="usage"><span class='fu'>board_register</span><span class='op'>(</span>
   <span class='va'>board</span>,
   name <span class='op'>=</span> <span class='cn'>NULL</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   versions <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
@@ -188,7 +188,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   container <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AZURE_STORAGE_CONTAINER"</span><span class='op'>)</span>,
   account <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AZURE_STORAGE_ACCOUNT"</span><span class='op'>)</span>,
   key <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AZURE_STORAGE_KEY"</span><span class='op'>)</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   path <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
@@ -197,7 +197,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   <span class='va'>url</span>,
   name <span class='op'>=</span> <span class='cn'>NULL</span>,
   headers <span class='op'>=</span> <span class='cn'>NULL</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
@@ -207,7 +207,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   key <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"DO_ACCESS_KEY_ID"</span><span class='op'>)</span>,
   secret <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"DO_SECRET_ACCESS_KEY"</span><span class='op'>)</span>,
   datacenter <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"DO_DATACENTER"</span><span class='op'>)</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   host <span class='op'>=</span> <span class='st'>"digitaloceanspaces.com"</span>,
   path <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
@@ -217,7 +217,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   name <span class='op'>=</span> <span class='st'>"gcloud"</span>,
   bucket <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"GCLOUD_STORAGE_BUCKET"</span><span class='op'>)</span>,
   token <span class='op'>=</span> <span class='cn'>NULL</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   path <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
@@ -229,16 +229,16 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   token <span class='op'>=</span> <span class='cn'>NULL</span>,
   path <span class='op'>=</span> <span class='st'>""</span>,
   host <span class='op'>=</span> <span class='st'>"https://api.github.com"</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
-<span class='fu'>board_register_local</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"local"</span>, cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>board_register_local</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"local"</span>, cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>board_register_kaggle</span><span class='op'>(</span>
   name <span class='op'>=</span> <span class='st'>"kaggle"</span>,
   token <span class='op'>=</span> <span class='cn'>NULL</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
@@ -248,7 +248,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   account <span class='op'>=</span> <span class='cn'>NULL</span>,
   key <span class='op'>=</span> <span class='cn'>NULL</span>,
   output_files <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
@@ -257,7 +257,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
   bucket <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AWS_BUCKET"</span><span class='op'>)</span>,
   key <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AWS_ACCESS_KEY_ID"</span><span class='op'>)</span>,
   secret <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AWS_SECRET_ACCESS_KEY"</span><span class='op'>)</span>,
-  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='board_cache_path.html'>board_cache_path</a></span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>,
   host <span class='op'>=</span> <span class='st'>"s3.amazonaws.com"</span>,
   region <span class='op'>=</span> <span class='cn'>NULL</span>,
   path <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -313,7 +313,7 @@ explicitly supply a <code>board</code> that you've created using <code><a href='
 #&gt; Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
 #&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</div><div class='input'>
 <span class='co'># now</span>
-<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_local.html'>board_local</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'><a href='board_folder.html'>board_temp</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='fu'><a href='pin.html'>pin</a></span><span class='op'>(</span><span class='va'>mtcars</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
 <span class='fu'><a href='pin_get.html'>pin_get</a></span><span class='op'>(</span><span class='st'>"mtcars"</span>, board <span class='op'>=</span> <span class='va'>board</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb

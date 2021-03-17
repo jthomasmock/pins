@@ -149,36 +149,28 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/pins">pins</a></span><span class="op">)</span>
 
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/board_local.html">board_local</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/board_folder.html">board_temp</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">b</span>
 <span class="co">#&gt; Pin board &lt;pins_board_local&gt;</span>
-<span class="co">#&gt; Path: '/tmp/RtmpWmLV3B/file1027444e25e55/local'</span>
+<span class="co">#&gt; Path: '/tmp/RtmpPhF1aa/pins-22ee6a395d22'</span>
 <span class="co">#&gt; With 0 pins: ''</span></code></pre></div>
 <p>Next you need to store some data in that board with <code><a href="reference/pin_read.html">pin_write()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">b</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/pin_read.html">pin_write</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
-<span class="co">#&gt; Creating pin named 'mtcars'</span>
+<code class="sourceCode R"><span class="va">b</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/pin_read.html">pin_write</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>, <span class="st">"mtcars"</span><span class="op">)</span>
 <span class="va">b</span>
 <span class="co">#&gt; Pin board &lt;pins_board_local&gt;</span>
-<span class="co">#&gt; Path: '/tmp/RtmpWmLV3B/file1027444e25e55/local'</span>
+<span class="co">#&gt; Path: '/tmp/RtmpPhF1aa/pins-22ee6a395d22'</span>
 <span class="co">#&gt; With 1 pins: 'mtcars'</span></code></pre></div>
 <p>Later, you can retrieve that data with <code><a href="reference/pin_read.html">pin_read()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/pin_read.html">pin_read</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 32 x 11</span>
-<span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4</span>
-<span class="co">#&gt;  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4</span>
-<span class="co">#&gt;  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1</span>
-<span class="co">#&gt;  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1</span>
-<span class="co">#&gt;  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2</span>
-<span class="co">#&gt;  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1</span>
-<span class="co">#&gt;  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4</span>
-<span class="co">#&gt;  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2</span>
-<span class="co">#&gt;  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2</span>
-<span class="co">#&gt; 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4</span>
-<span class="co">#&gt; # … with 22 more rows</span></code></pre></div>
+<span class="co">#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="co">#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="co">#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="co">#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="co">#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="co">#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></code></pre></div>
 <p>This can be convenient when working locally, but the real power of pins comes when you use a shared board, because because the writer and reader can be different people (or automated processes).</p>
 <p>For example, if you use RStudio Connect, you can pin data to shared board:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -192,7 +184,7 @@
 <p>You can easily control who gets to see it using the RStudio Connection permissions pane.</p>
 <p>As well as RStudio connect, you can share your pins:</p>
 <ul>
-<li>In shared folders: <code><a href="reference/board_local.html">board_local()</a></code>.</li>
+<li>In shared folders: <code><a href="reference/board_folder.html">board_folder()</a></code>.</li>
 <li>On GitHub: <code><a href="reference/board_github.html">board_github()</a></code>.</li>
 <li>In Microsoft Azure’s storage: <code><a href="reference/board_azure.html">board_azure()</a></code>.</li>
 <li>On Amazon’s S3: <code><a href="reference/board_s3.html">board_s3()</a></code>.</li>

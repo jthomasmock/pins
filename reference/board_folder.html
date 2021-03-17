@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • pins</title>
+<title>Use a local folder as board — board_folder • pins</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,19 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Use a local folder as board — board_folder" />
+<meta property="og:description" content="
+
+board_folder() creates a board inside a folder. You can use this to
+share files by using a folder on a shared network drive or inside
+a DropBox.
+board_temp() creates a temporary board that lives in a session
+specific temporary directory. It will be automatically deleted once
+the current R session ends.
+board_local() is mostly included for backward compatiblity. It's
+the default board used by pin() and pin_get().
+
+" />
 <meta property="og:image" content="https://pins.rstudio.com/logo.png" />
 
 
@@ -68,7 +80,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -155,158 +167,67 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Use a local folder as board</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio/pins/blob/master/R/board_local.R'><code>R/board_local.R</code></a></small>
+    <div class="hidden name"><code>board_folder.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+<ul>
+<li><p><code>board_folder()</code> creates a board inside a folder. You can use this to
+share files by using a folder on a shared network drive or inside
+a DropBox.</p></li>
+<li><p><code>board_temp()</code> creates a temporary board that lives in a session
+specific temporary directory. It will be automatically deleted once
+the current R session ends.</p></li>
+<li><p><code>board_local()</code> is mostly included for backward compatiblity. It's
+the default board used by <code><a href='pin.html'>pin()</a></code> and <code><a href='pin_get.html'>pin_get()</a></code>.</p></li>
+</ul>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    </div>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-pins" class="hasAnchor"><a href="#section-pins" class="anchor"></a>Pins</h2>
-          <p class="section-desc"><p>Functions for pinning, finding, retrieving and sharing remote resources.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="pin.html">pin()</a></code> </p>
-        </td>
-        <td><p>Pin Resource</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_find.html">pin_find()</a></code> </p>
-        </td>
-        <td><p>Find Pin</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_get.html">pin_get()</a></code> </p>
-        </td>
-        <td><p>Retrieve Pin</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_info.html">pin_info()</a></code> </p>
-        </td>
-        <td><p>Pin Info</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_reactive.html">pin_reactive()</a></code> </p>
-        </td>
-        <td><p>Reactive Pin</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_read.html">pin_read()</a></code> <code><a href="pin_read.html">pin_write()</a></code> </p>
-        </td>
-        <td><p>Read and write pins</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_remove.html">pin_remove()</a></code> </p>
-        </td>
-        <td><p>Remove Pin</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pin_versions.html">pin_versions()</a></code> </p>
-        </td>
-        <td><p>Pin Versions</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-boards" class="hasAnchor"><a href="#section-boards" class="anchor"></a>Boards</h2>
-          <p class="section-desc"><p>Alias functions to help register boards.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="board_azure.html">board_azure()</a></code> </p>
-        </td>
-        <td><p>Use an Azure board</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="board_folder.html">board_folder()</a></code> <code><a href="board_folder.html">board_local()</a></code> <code><a href="board_folder.html">board_temp()</a></code> </p>
-        </td>
-        <td><p>Use a local folder as board</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="board_github.html">board_github()</a></code> </p>
-        </td>
-        <td><p>Use a GitHub board</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="board_rsconnect.html">board_rsconnect()</a></code> </p>
-        </td>
-        <td><p>Use an RStudio Connect board</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="board_s3.html">board_s3()</a></code> </p>
-        </td>
-        <td><p>Use an S3 board</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="custom-boards.html">board_pin_create()</a></code> <code><a href="custom-boards.html">board_initialize()</a></code> <code><a href="custom-boards.html">board_browse()</a></code> <code><a href="custom-boards.html">board_desc()</a></code> <code><a href="custom-boards.html">board_pin_get()</a></code> <code><a href="custom-boards.html">board_pin_remove()</a></code> <code><a href="custom-boards.html">board_pin_find()</a></code> <code><a href="custom-boards.html">board_pin_versions()</a></code> </p>
-        </td>
-        <td><p>Custom Boards</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-extensions" class="hasAnchor"><a href="#section-extensions" class="anchor"></a>Extensions</h2>
-          <p class="section-desc"><p>Functions for creating custom boards.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="custom-boards.html">board_pin_create()</a></code> <code><a href="custom-boards.html">board_initialize()</a></code> <code><a href="custom-boards.html">board_browse()</a></code> <code><a href="custom-boards.html">board_desc()</a></code> <code><a href="custom-boards.html">board_pin_get()</a></code> <code><a href="custom-boards.html">board_pin_remove()</a></code> <code><a href="custom-boards.html">board_pin_find()</a></code> <code><a href="custom-boards.html">board_pin_versions()</a></code> </p>
-        </td>
-        <td><p>Custom Boards</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="custom-pins.html">pin_load()</a></code> <code><a href="custom-pins.html">board_pin_store()</a></code> </p>
-        </td>
-        <td><p>Custom Pins</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>board_folder</span><span class='op'>(</span><span class='va'>path</span>, name <span class='op'>=</span> <span class='st'>"folder"</span>, versions <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>board_local</span><span class='op'>(</span>versions <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>board_temp</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"temp"</span>, versions <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>Path to directory to store pins. Will be created if it
+doesn't already exist.</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>An optional name used identify the board. This is no longer
+generally needed since you should be passing around an explicit
+board object.</p></td>
+    </tr>
+    <tr>
+      <th>versions</th>
+      <td><p>Should this board be registered with support for versions?</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other boards: 
+<code><a href='board_azure.html'>board_azure</a>()</code>,
+<code><a href='board_github.html'>board_github</a>()</code>,
+<code><a href='board_rsconnect.html'>board_rsconnect</a>()</code>,
+<code><a href='board_s3.html'>board_s3</a>()</code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># session-specific local board</span>
+<span class='va'>board</span> <span class='op'>&lt;-</span> <span class='fu'>board_temp</span><span class='op'>(</span><span class='op'>)</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

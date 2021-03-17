@@ -19,6 +19,9 @@
     <loc>https://pins.rstudio.com/reference/board_dospace.html</loc>
   </url>
   <url>
+    <loc>https://pins.rstudio.com/reference/board_folder.html</loc>
+  </url>
+  <url>
     <loc>https://pins.rstudio.com/reference/board_gcloud.html</loc>
   </url>
   <url>
@@ -26,9 +29,6 @@
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/board_kaggle.html</loc>
-  </url>
-  <url>
-    <loc>https://pins.rstudio.com/reference/board_local.html</loc>
   </url>
   <url>
     <loc>https://pins.rstudio.com/reference/board_register.html</loc>
