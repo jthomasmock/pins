@@ -261,17 +261,6 @@ API key, you can connect to the board with:<div class="r"></p><pre><span class='
 </pre><p></div></p>
 <p>Note the use of an environment variable to ensure that the API key is
 not stored in plain text in the document.</p>
-    <h2 class="hasAnchor" id="customizing"><a class="anchor" href="#customizing"></a>Customizing</h2>
-
-    <p>A pin is displayed in RStudio Connect with an auto-generated page showcasing
-instructions for getting the pin and a preview of the dataset, this page can
-be customized as follows:</p><ol>
-<li><p>Locate the file with <code><a href='https://rdrr.io/r/base/system.file.html'>system.file("views/data/index.html", package = "pins")</a></code></p></li>
-<li><p>Copy the file to a new location and make any changes to it.</p></li>
-<li><p>Set the file path as an option using <code>Sys.setenv(RSCONNECT_HTML_PATH = &lt;your index&gt;)</code>.</p></li>
-<li><p>Pin a dataset normally.</p></li>
-</ol>
-
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other boards: 
